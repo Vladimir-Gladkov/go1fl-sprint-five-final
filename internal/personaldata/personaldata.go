@@ -2,7 +2,6 @@ package personaldata
 
 import "fmt"
 
-// Создаем экспортируемую структуру
 type Personal struct {
 	Name   string
 	Weight float64

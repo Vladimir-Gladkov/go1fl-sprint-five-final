@@ -14,6 +14,7 @@ const (
 )
 
 // Вычисляем калории, потраченные при ходьбе
+
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	// Проверяем на отрицательное занчение
 	if steps <= 0 || weight <= 0 || height <= 0 || duration <= 0 {
@@ -26,6 +27,7 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 }
 
 // Вычисляем беговые калории
+
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	// Проверяем на отрицательные значения шаги
 	if steps <= 0 {
@@ -42,6 +44,7 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 }
 
 // Вычисляем среднюю скорость
+
 func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
 	// Проверка отрицательных шагов
 	if duration <= 0 {
@@ -53,6 +56,7 @@ func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
 }
 
 // Вычисляем дистанцию
+
 func Distance(steps int, height float64) float64 {
 	distance := (float64(steps) * height * stepLengthCoefficient) / mInKm
 	return distance
