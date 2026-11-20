@@ -24,16 +24,16 @@ func (t *Training) Parse(datastring string) (err error) {
 
 	// Проверяем что длинну слайса
 	if len(parts) != 3 {
-		return errors.New("invalid string format")
+		return fmt.Errorf("invalid input format: expected 3 comma-separated values, got %d in string '%s'", len(parts), datastring)
 	}
 
 	// Преобразуем количество шагов
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
-		return fmt.Errorf("invalid format steps: %w", err)
+		return fmt.Errorf("failed to convert steps value '%s' to int: %w", parts[0], err)
 	}
 	if steps <= 0 {
-		return errors.New("the number of steps must be positive")
+		return fmt.Errorf("steps cannot be negative or zero, got: %d", steps)
 	}
 	//Сохраняем значения в структуру
 	t.Steps = steps
@@ -43,7 +43,7 @@ func (t *Training) Parse(datastring string) (err error) {
 	// Преобразуем продолжительность
 	duration, err := time.ParseDuration(parts[2])
 	if err != nil {
-		return fmt.Errorf("invalid format duration: %w", err)
+		return fmt.Errorf("failed to parse duration value '%s': %w", parts[2], err)
 	}
 	if duration <= 0 {
 		return errors.New("the duration of steps must be positive")
